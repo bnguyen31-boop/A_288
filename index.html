@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Analog System</title>
+    <!-- PyScript allows Python to run in HTML -->
+    <link rel="stylesheet" href="https://pyscript.net">
+    <script type="module" src="https://pyscript.net"></script>
+    <style>
+        body { background-color: black; color: #33FF33; font-family: 'Courier New', monospace; padding: 20px; }
+        input { background: transparent; border: none; color: #33FF33; outline: none; font-family: inherit; font-size: inherit; }
+    </style>
+</head>
+<body>
+    <div id="output"></div>
+    <script type="py">
+        from pyscript import display, window
+        import time
+
+        def type_text(text):
+            # PyScript 'display' puts text on the screen
+            display(text, target="output", append=True)
+
+        type_text("INITIALIZING...")
+        name = window.prompt("What is your full name?")
+        type_text(f"Hello, {name}. We are watching.")
+    </script>
+</body>
+</html>
