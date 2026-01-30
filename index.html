@@ -2,10 +2,13 @@
 <html>
 <head>
     <title>Analog System</title>
-    <link rel="stylesheet" href="https://pyscript.net">
-    <script type="module" src="https://pyscript.net"></script>
+    <meta charset="UTF-8">
+    <!-- Official PyScript 2024.1.1 Links -->
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
 </head>
 <body style="background-color: black; margin: 0;">
+    <!-- 'terminal' creates the interactive black screen; 'worker' prevents browser freezing -->
     <script type="py" terminal worker>
 import time
 from pyscript import fetch
@@ -22,7 +25,6 @@ async def main():
     house = input("whats ur address? ")
     time.sleep(0.2)
 
-    # Simplified birth year check
     year_in = input("year of birth?(year only) ")
     year = int(year_in) if year_in.isdigit() else 0
     if year < 1900 and year != 0:
@@ -31,20 +33,20 @@ async def main():
     month_input = input("month of birth? ")
     day = input("day of birth? ")
 
-    # IP TRACE FIX: fetch real public IP from ipify
     print("Tracing connection...")
     try:
+        # Fixed IP Trace for GitHub Pages
         response = await fetch("https://api.ipify.org")
         IPAddr = await response.text()
     except Exception:
-        IPAddr = "REDACTED/FAILED"
+        IPAddr = "TRACE_FAILED"
 
-    print("so your birthday is " + month_input + "/" + str(day) + "/" + str(year))
+    print(f"so your birthday is {month_input}/{day}/{year}")
     time.sleep(1)
     print("and the time at your location is " + time.ctime())
     time.sleep(2)
     
-    # Analog clear screen
+    # ANSI clear screen code
     print("\033[H\033[J") 
     time.sleep(1)
 
@@ -55,9 +57,9 @@ async def main():
     time.sleep(3)
     
     answer = input("are you sure you answered truthfully? ")
-    if answer == "yes":
+    if answer.lower() == "yes":
         sure = input("REALLY SURE!??? ")
-        if sure == "yes":
+        if sure.lower() == "yes":
             print("still gonna find you")
     else:
         print("im gonna find you if you don't restart this quiz correctly")
